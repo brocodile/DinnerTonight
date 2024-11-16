@@ -8,6 +8,26 @@
     <link rel="stylesheet" href="{% static 'questions/questions.css' %}">
 </head>
 <body>
-    <h1>hello world</h1>
+    <h1>Submit Your Preferences</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="career">Career/Profession:</label>
+        {{ form.career }}
+        <br><br>
+
+        <label for="interests">Interests:</label>
+        {{ form.interests }}
+        <br><br>
+
+        <label for="personality_traits">Personality Traits:</label>
+        {{ form.personality_traits }}
+        <br><br>
+
+        <label for="relationship_goals">Relationship Goals:</label>
+        {{ form.relationship_goals }}
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
