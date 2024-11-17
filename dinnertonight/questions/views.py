@@ -1,11 +1,36 @@
+import requests
 from django.shortcuts import render
 from .forms import UserPreferencesForm
-from transformers import pipeline
-import logging
+from dotenv import load_dotenv
+from os import getenv
 
-logger = logging.getLogger(__name__)
-# Load the Hugging Face text-generation pipeline
-text_generator = pipeline("text-generation", model="distilgpt2", device=-1) # can use different models
+# Load environment variables from a .env file
+load_dotenv()
+# Replace with your Hugging Face API token
+HF_API_TOKEN = getenv('API_KEY')
+
+# Hugging Face Inference API endpoint for text generation
+HF_API_URL = "https://api-inference.huggingface.co/models/gpt2"  # You can use a different model if needed
+
+# Function to call Hugging Face API for text generation
+def generate_bio(input_text):
+    headers = {
+        "Authorization": f"Bearer {HF_API_TOKEN}",
+    }
+    payload = {
+        "inputs": input_text,
+        "parameters": {
+            "max_length": 50,  # Adjust this as per your needs
+            "num_return_sequences": 1,
+        }
+    }
+
+    response = requests.post(HF_API_URL, json=payload, headers=headers)
+
+    if response.status_code == 200:
+        return response.json()[0]['generated_text']
+    else:
+        return "Error generating text."
 
 def questions(request):
     if request.method == 'POST':
@@ -19,11 +44,8 @@ def questions(request):
                 f" They are looking for {data['relationship_goals']}."
             )
 
-            # Generate a bio using Hugging Face
-            generated = text_generator(input_text, max_length=50, num_return_sequences=1)
-            bio = generated[0]['generated_text']
-
-            logger.info(f"Generated Bio: {bio}")
+            # Generate a bio using Hugging Face API
+            bio = generate_bio(input_text)
 
             # Pass the generated bio and form data to the success template
             return render(request, 'questions/success.html', {'data': data, 'bio': bio})
