@@ -4,30 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DinnerTonight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Matemasie&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'questions/questions.css' %}">
 </head>
 <body>
-    <h1>Submit Your Preferences</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="career">Career/Profession:</label>
-        {{ form.career }}
-        <br><br>
-
-        <label for="interests">Interests:</label>
-        {{ form.interests }}
-        <br><br>
-
-        <label for="personality_traits">Personality Traits:</label>
-        {{ form.personality_traits }}
-        <br><br>
-
-        <label for="relationship_goals">Relationship Goals:</label>
-        {{ form.relationship_goals }}
-        <br><br>
-
-        <button type="submit">Submit</button>
-    </form>
+    <h1>DinnerTonight</h1>
+    <div class="body-div">
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <div>
+                    <label for="career">Career/Profession:</label>
+                    {{ form.career }}
+                </div>
+                <div>
+                    <label for="interests">Interests/Hobbies:</label>
+                    {{ form.interests }}
+                </div>
+                <div>
+                    <label for="personality_traits">Personality Traits:</label>
+                    {{ form.personality_traits }}
+                </div>
+                <div>
+                    <label for="relationship_goals">Relationship Goals:</label>
+                    {{ form.relationship_goals }}
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

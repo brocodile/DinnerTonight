@@ -6,8 +6,11 @@
     <title>Success</title>
 </head>
 <body>
-    <h1>Form Submitted Successfully!</h1>
-    <p>Your preferences:</p>
+    <h1>Your Generated Bio</h1>
+    <p><strong>Name:</strong> The {{ data.personality_traits|capfirst }} {{ data.interests|capfirst }}</p>
+    <p><strong>Bio:</strong> {{ bio }}</p>
+
+    <h2>Form Data:</h2>
     <ul>
         <li><strong>Career:</strong> {{ data.career }}</li>
         <li><strong>Interest:</strong> {{ data.interests }}</li>

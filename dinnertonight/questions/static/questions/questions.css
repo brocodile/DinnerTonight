@@ -1,3 +1,92 @@
+.matemasie-regular {
+    font-family: "Matemasie", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='60' height='30' patternTransform='scale(2) rotate(60)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M1-6.5v13h28v-13H1zm15 15v13h28v-13H16zm-15 15v13h28v-13H1z'  stroke-width='1' stroke='none' fill='hsla(47,80.9%,61%,1)'/><path d='M31-6.5v13h28v-13H31zm-45 15v13h28v-13h-28zm60 0v13h28v-13H46zm-15 15v13h28v-13H31z'  stroke-width='1' stroke='none' fill='hsla(4.1,89.6%,58.4%,1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(-72,0)' fill='url(%23a)'/></svg>");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat-y;
+}
+
+.body-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: #fac505;
+}
+
 h1{
-    font-family: cursive;
+    font-family: "Matemasie", cursive;
+    font-size: 3em;
+    text-align: center;
+}
+/* Center the form container and style */
+form {
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent black background for readability */
+    border: 3px solid #fac505;
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the form elements */
+label {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+select {
+    width: calc(100% - 20px); /* Full width with padding */
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    border: 2px solid #fac505;
+    border-radius: 8px;
+    background-color: #333;
+    color: #fac505;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: black;
+    background-color: #fac505;
+    border: 2px solid #fac505;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffc107;
+}
+
+/* Grid layout for the form inputs */
+form div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Responsive styling for mobile devices */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+    }
+
+    form div {
+        grid-template-columns: 1fr; /* Single column for smaller screens */
+    }
 }
