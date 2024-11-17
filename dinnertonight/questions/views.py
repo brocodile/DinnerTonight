@@ -6,32 +6,37 @@ from os import getenv
 
 # Load environment variables from a .env file
 load_dotenv()
-# Replace with your Hugging Face API token
 HF_API_TOKEN = getenv('API_KEY')
 
 # Hugging Face Inference API endpoint for text generation
-HF_API_URL = "https://api-inference.huggingface.co/models/gpt2"  # You can use a different model if needed
+HF_API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 
 # Function to call Hugging Face API for text generation
 def generate_bio(input_text):
     headers = {
         "Authorization": f"Bearer {HF_API_TOKEN}",
     }
-    payload = {
-        "inputs": input_text,
-        "parameters": {
-            "max_length": 50,  # Adjust this as per your needs
-            "num_return_sequences": 1,
-        }
-    }
+    payload = {"inputs": input_text}
 
-    response = requests.post(HF_API_URL, json=payload, headers=headers)
+    try:
+        response = requests.post(HF_API_URL, json=payload, headers=headers)
+        response.raise_for_status()
 
-    if response.status_code == 200:
-        return response.json()[0]['generated_text']
-    else:
+        # Extract generated text and include everything from "I am" onward
+        generated_text = response.json()[0]['generated_text']
+        start_idx = generated_text.find("I am")
+        if start_idx != -1:
+            text = generated_text[start_idx:]
+            text = text.split(". ")
+            text[-1] = ""
+            cleaned_text = ". ".join(text)
+            return cleaned_text
+        else:
+            return "Error: Generated text"
+    except requests.exceptions.RequestException:
         return "Error generating text."
 
+# Main view to handle the form and generate bio
 def questions(request):
     if request.method == 'POST':
         form = UserPreferencesForm(request.POST)
@@ -40,11 +45,13 @@ def questions(request):
 
             # Prepare input text based on the form data
             input_text = (
-                f"A {data['personality_traits']} individual with a career as a {data['career']} and interests in {data['interests']}."
-                f" They are looking for {data['relationship_goals']}."
+                f"Write a creative, engaging bio in 3-4 sentences for a social media profile, "
+                f"about a {data['personality_traits']} {data['career']}. "
+                f"Their interests include {data['interests']}, and they are seeking a {data['relationship_goals']} relationship. "
+                f"Start the answer with - I am"
             )
 
-            # Generate a bio using Hugging Face API
+            # Generate a bio using the Hugging Face API
             bio = generate_bio(input_text)
 
             # Pass the generated bio and form data to the success template
