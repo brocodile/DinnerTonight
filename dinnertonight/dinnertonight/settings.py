@@ -27,7 +27,7 @@ SECRET_KEY = getenv('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'your-app-name.onrender.com',
+    'dinnertonight-t0kl.onrender.com',
     'localhost',
     '127.0.0.1'
 ]
