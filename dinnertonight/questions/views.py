@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .forms import UserPreferencesForm
 from transformers import pipeline
+import logging
 
+logger = logging.getLogger(__name__)
 # Load the Hugging Face text-generation pipeline
 text_generator = pipeline("text-generation", model="gpt2", device=-1) # can use different models
 
@@ -20,6 +22,8 @@ def questions(request):
             # Generate a bio using Hugging Face
             generated = text_generator(input_text, max_length=50, num_return_sequences=1)
             bio = generated[0]['generated_text']
+
+            logger.info(f"Generated Bio: {bio}")
 
             # Pass the generated bio and form data to the success template
             return render(request, 'questions/success.html', {'data': data, 'bio': bio})
