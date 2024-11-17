@@ -5,7 +5,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 # Load the Hugging Face text-generation pipeline
-text_generator = pipeline("text-generation", model="gpt2", device=-1) # can use different models
+text_generator = pipeline("text-generation", model="distilgpt2", device=-1) # can use different models
 
 def questions(request):
     if request.method == 'POST':
