@@ -3,3 +3,6 @@ torch==2.5.1+cpu
 torchaudio==2.5.1+cpu
 torchvision==0.20.1+cpu
 transformers==4.46.2
+gunicorn==23.0.0
+whitenoise==6.8.2
+psycopg2-binary==2.9.10
