@@ -3,7 +3,7 @@ from .forms import UserPreferencesForm
 from transformers import pipeline
 
 # Load the Hugging Face text-generation pipeline
-text_generator = pipeline("text-generation", model="gpt2")
+text_generator = pipeline("text-generation", model="gpt2") # can use different models
 
 def questions(request):
     if request.method == 'POST':

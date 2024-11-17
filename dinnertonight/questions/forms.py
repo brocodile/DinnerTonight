@@ -1,5 +1,5 @@
 from django import forms
-
+# Add form options and can extend appropriately
 class UserPreferencesForm(forms.Form):
     CAREER_CHOICES = [
         ('software_engineer', 'Software Engineer'),
