@@ -90,3 +90,61 @@ form div {
         grid-template-columns: 1fr; /* Single column for smaller screens */
     }
 }
+
+strong{
+    color: red;
+}
+
+/* Success container styling */
+.success-container {
+    background-color: rgba(0, 0, 0, 0.7); /* Matching form background */
+    border: 3px solid #fac505;
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #fac505;
+}
+
+/* Selected options list */
+.selected-options {
+    margin-bottom: 20px;
+}
+
+.selected-options h2 {
+    font-family: "Matemasie", cursive;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.selected-options ul {
+    list-style: none;
+    padding: 0;
+}
+
+.selected-options li {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+/* Generated bio styling */
+.generated-prompt h2 {
+    font-family: "Matemasie", cursive;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.generated-prompt p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: beige;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .success-container {
+        width: 90%;
+    }
+}

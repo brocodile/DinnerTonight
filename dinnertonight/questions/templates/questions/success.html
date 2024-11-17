@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success</title>
+    <title>Success - DinnerTonight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Matemasie&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'questions/questions.css' %}">
 </head>
 <body>
-    <h1>Your Generated Bio</h1>
-    <p><strong>Name:</strong> The {{ data.personality_traits|capfirst }} {{ data.interests|capfirst }}</p>
-    <p><strong>Bio:</strong> {{ bio }}</p>
+    <h1>DinnerTonight</h1>
+    <div class="body-div">
+        <div class="success-container">
+            <!-- Display selected options -->
+            <div class="selected-options">
+                <h2>Your Selected Options:</h2>
+                <ul>
+                    <li><strong>Career/Profession:</strong> {{ data.career }}</li>
+                    <li><strong>Interests/Hobbies:</strong> {{ data.interests }}</li>
+                    <li><strong>Personality Traits:</strong> {{ data.personality_traits }}</li>
+                    <li><strong>Relationship Goals:</strong> {{ data.relationship_goals }}</li>
+                </ul>
+            </div>
 
-    <h2>Form Data:</h2>
-    <ul>
-        <li><strong>Career:</strong> {{ data.career }}</li>
-        <li><strong>Interest:</strong> {{ data.interests }}</li>
-        <li><strong>Personality Trait:</strong> {{ data.personality_traits }}</li>
-        <li><strong>Relationship Goals:</strong> {{ data.relationship_goals }}</li>
-    </ul>
+            <!-- Display generated bio -->
+            <div class="generated-prompt">
+                <h2>Your Generated Bio:</h2>
+                <p>{{ bio }}</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
